@@ -1,0 +1,41 @@
+<!-- filepath: p:\SIO2\AP-Santero\TP-DEVWEB\views\index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accueil</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Articles</h1>
+  <% if (loggedIn) { %>
+    <p>Bienvenue <%= username %> ! <a href="/logout">Déconnexion</a></p>
+    <a href="/new">Créer un article</a>
+  <% } else { %>
+    <form action="/login" method="get">
+      <button type="submit">Connexion</button>
+    </form>
+  <% } %>
+  
+  <ul>
+    app.use(session({
+ cookieName: 'session',
+ secret: 'MonCodeSecretSession',
+ duration: 30 * 60 * 10000,
+ activeDuration: 5 * 60 * 10000,
+ httpOnly: true,
+ secure: true,
+ ephemeral: true
+}));
+    <% articles.forEach(article => { %>
+      <li>
+        <a href="/article/<%= article.id %>"><%= article.title %></a>
+        <% if (loggedIn) { %>
+          <form action="/delete/<%= article.id %>" method="POST" style="display:inline;">
+            <button type="submit">🗑️ Supprimer</button>
+          </form>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

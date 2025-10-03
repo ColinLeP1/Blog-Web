@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nouveau Article</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Créer un nouvel article</h1>
+  <form action="/new" method="POST"> <!-- Change the action to /new -->
+    <input type="text" name="title" placeholder="Titre" required><br>
+    <textarea name="content" placeholder="Contenu" required></textarea><br>
+    <input type="text" name="tags" placeholder="Tags (séparés par des virgules)"><br>
+    <button type="submit">Publier</button>
+  </form>
+</body>
+</html>

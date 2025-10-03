@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; }
+    form { max-width: 300px; margin: auto; }
+    input, button { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+    .error { color: red; font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center;">Connexion</h1>
+
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <form method="POST" action="/login">
+    <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+    <input type="password" name="password" placeholder="Mot de passe" required>
+    <button type="submit">Se connecter</button>
+  </form>
+</body>
+</html>

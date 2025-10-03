@@ -1,0 +1,56 @@
+<!-- filepath: p:\SIO2\AP-Santero\TP-DEVWEB\views\article.ejs -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title><%= article.title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <a href="/" class="btn btn-secondary mb-3">&larr; Retour à l'accueil</a>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h1 class="card-title"><%= article.title %></h1>
+        <p class="card-text"><%= article.content %></p>
+        <% if (article.image) { %>
+          <img src="<%= article.image %>" alt="Image de l'article" class="img-fluid rounded mb-3" style="max-width:400px;">
+        <% } %>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h2 class="h5 mb-0">Commentaires</h2>
+      </div>
+      <ul class="list-group list-group-flush">
+        <% if (commentaire.length > 0) { %>
+          <% commentaire.forEach(comm => { %>
+            <li class="list-group-item">
+              <span class="text-muted">(<%= comm.date.toLocaleString() %>)</span><br>
+              <%= comm.comm %>
+            </li>
+          <% }) %>
+        <% } else { %>
+          <li class="list-group-item text-muted">Aucun commentaire pour cet article.</li>
+        <% } %>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-header bg-success text-white">
+        <h3 class="h6 mb-0">Ajouter un commentaire</h3>
+      </div>
+      <div class="card-body">
+        <form action="/article/<%= article.id %>/comment" method="POST">
+          <div class="mb-3">
+            <label for="comment" class="form-label">Votre commentaire</label>
+            <textarea id="comment" name="comment" class="form-control" rows="3" placeholder="Votre commentaire" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
